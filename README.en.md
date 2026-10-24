@@ -1,4 +1,4 @@
-# Manga Viewer for X v0.6.0
+# Manga Viewer for X v0.7.0
 
 A Chrome extension that opens a vertical-stitching viewer for manga when you click an image on X (formerly Twitter). An unofficial tool, not affiliated with X Corp.
 
@@ -27,7 +27,7 @@ A Chrome extension that opens a vertical-stitching viewer for manga when you cli
 | Ctrl+wheel | Zoom (around the cursor) |
 | Click image / → / j / n | Next image |
 | Shift+click / ← / k / p | Previous image |
-| 1–6 | View mode (button order: Equal / Scale / Width / Whole / Auto / Orig) |
+| 1–6 | View mode (button order: Equal / Scale / Width / Whole / Auto / Orig; modes hidden in the settings are disabled) |
 | + / - / 0 | Zoom in / out / reset |
 | Esc / q / click on the margin | Close |
 
