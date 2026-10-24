@@ -1,0 +1,98 @@
+{
+  "extName": {
+    "message": "Manga Viewer for X"
+  },
+  "extDescription": {
+    "message": "X（旧Twitter）の画像をクリックすると、最高画質・縦連結・同一投稿者のスレッド通しで表示するビューアを開きます（非公式）。"
+  },
+  "mode_equal": {
+    "message": "同幅"
+  },
+  "mode_scale": {
+    "message": "同倍"
+  },
+  "mode_width": {
+    "message": "横幅"
+  },
+  "mode_height": {
+    "message": "高さ"
+  },
+  "mode_best": {
+    "message": "自動"
+  },
+  "mode_orig": {
+    "message": "原寸"
+  },
+  "tip_equal": {
+    "message": "同幅：すべての画像を基準幅にそろえる"
+  },
+  "tip_scale": {
+    "message": "同倍率：先頭画像が基準幅になる倍率を全画像に適用（画像の大きさの違いはそのまま）"
+  },
+  "tip_width": {
+    "message": "横幅に合わせる"
+  },
+  "tip_height": {
+    "message": "高さに合わせる"
+  },
+  "tip_best": {
+    "message": "自動：縦長は幅に合わせ、横長は画面に収める。原寸以上には拡大しない"
+  },
+  "tip_orig": {
+    "message": "原寸"
+  },
+  "tip_zoomOut": {
+    "message": "縮小 (-)"
+  },
+  "tip_zoomReset": {
+    "message": "倍率リセット (0)"
+  },
+  "tip_zoomIn": {
+    "message": "拡大 (+)"
+  },
+  "tip_reload": {
+    "message": "スレッドの画像を読み込み直す"
+  },
+  "tip_close": {
+    "message": "閉じる (Esc)"
+  },
+  "failed": {
+    "message": "画像を読み込めませんでした"
+  },
+  "loading": {
+    "message": "読込中…"
+  },
+  "lastImage": {
+    "message": "最後の画像です"
+  },
+  "firstImage": {
+    "message": "最初の画像です"
+  },
+  "hint": {
+    "message": "クリック: 次の画像 / Shift+クリック: 前 / 1〜6: 表示モード / Ctrl+ホイール: 拡大縮小 / Esc: 閉じる"
+  },
+  "options_title": {
+    "message": "Manga Viewer for X 設定"
+  },
+  "opt_start_title": {
+    "message": "起動時の表示モード"
+  },
+  "opt_start_desc": {
+    "message": "ビューアを開いたときの表示モード。「前回選んだモード」だと、ビューアで最後に選んだモードで始まります。"
+  },
+  "opt_start_last": {
+    "message": "前回選んだモード"
+  },
+  "opt_ratio_title": {
+    "message": "基準幅（同幅・同倍モード）"
+  },
+  "opt_ratio_desc": {
+    "message": "画面幅に対する割合。同幅では全画像がこの幅になり、同倍では先頭画像がこの幅になる倍率で表示します。"
+  },
+  "opt_reset": {
+    "message": "初期値に戻す"
+  },
+  "opt_saved": {
+    "message": "保存しました"
+  }
+}

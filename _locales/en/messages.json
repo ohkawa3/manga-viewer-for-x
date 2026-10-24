@@ -1,0 +1,98 @@
+{
+  "extName": {
+    "message": "Manga Viewer for X"
+  },
+  "extDescription": {
+    "message": "Click an image on X (Twitter) to open a viewer with original quality, vertical stitching, and the author's whole thread in order. Unofficial."
+  },
+  "mode_equal": {
+    "message": "Equal"
+  },
+  "mode_scale": {
+    "message": "Scale"
+  },
+  "mode_width": {
+    "message": "Width"
+  },
+  "mode_height": {
+    "message": "Height"
+  },
+  "mode_best": {
+    "message": "Auto"
+  },
+  "mode_orig": {
+    "message": "Orig"
+  },
+  "tip_equal": {
+    "message": "Equal width: scale every image to the base width"
+  },
+  "tip_scale": {
+    "message": "Same scale: apply one scale to all images, set so the first image gets the base width (size differences are kept)"
+  },
+  "tip_width": {
+    "message": "Fit to screen width"
+  },
+  "tip_height": {
+    "message": "Fit to screen height"
+  },
+  "tip_best": {
+    "message": "Auto: fit width for tall images, fit the screen for wide ones. Never enlarged beyond original size"
+  },
+  "tip_orig": {
+    "message": "Original size"
+  },
+  "tip_zoomOut": {
+    "message": "Zoom out (-)"
+  },
+  "tip_zoomReset": {
+    "message": "Reset zoom (0)"
+  },
+  "tip_zoomIn": {
+    "message": "Zoom in (+)"
+  },
+  "tip_reload": {
+    "message": "Reload the thread's images"
+  },
+  "tip_close": {
+    "message": "Close (Esc)"
+  },
+  "failed": {
+    "message": "Could not load the image"
+  },
+  "loading": {
+    "message": "Loading…"
+  },
+  "lastImage": {
+    "message": "This is the last image"
+  },
+  "firstImage": {
+    "message": "This is the first image"
+  },
+  "hint": {
+    "message": "Click: next image / Shift+click: previous / 1–6: view mode / Ctrl+wheel: zoom / Esc: close"
+  },
+  "options_title": {
+    "message": "Manga Viewer for X Settings"
+  },
+  "opt_start_title": {
+    "message": "View mode on open"
+  },
+  "opt_start_desc": {
+    "message": "The view mode used when the viewer opens. \"Last used mode\" starts with the mode you last picked in the viewer."
+  },
+  "opt_start_last": {
+    "message": "Last used mode"
+  },
+  "opt_ratio_title": {
+    "message": "Base width (Equal / Scale modes)"
+  },
+  "opt_ratio_desc": {
+    "message": "Share of the screen width. In Equal every image gets this width; in Scale the first image gets this width and all images use the same scale."
+  },
+  "opt_reset": {
+    "message": "Reset to defaults"
+  },
+  "opt_saved": {
+    "message": "Saved"
+  }
+}
