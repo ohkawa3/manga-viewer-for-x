@@ -27,13 +27,14 @@ A Chrome extension that opens a vertical-stitching viewer for manga when you cli
 | Ctrl+wheel | Zoom (around the cursor) |
 | Click image / → / j / n | Next image |
 | Shift+click / ← / k / p | Previous image |
-| 1–6 | View mode (button order: Equal / Scale / Width / Height / Auto / Orig) |
+| 1–6 | View mode (button order: Equal / Scale / Width / Whole / Auto / Orig) |
 | + / - / 0 | Zoom in / out / reset |
 | Esc / q / click on the margin | Close |
 
 ## Settings
 Open `chrome://extensions/` → "Details" of this extension → "Extension options" (or right-click the extension icon → "Options"). Changes are saved automatically and also apply to open x.com tabs.
 - **View mode on open**: "Last used mode" (default; starts with the mode you last picked in the viewer) or a fixed mode.
+- **Modes to show**: uncheck the modes you do not use to hide them from the toolbar and the number keys (at least one stays).
 - **Base width**: base width for Equal / Scale modes (30–100%, default 75%).
 - "Reset to defaults" restores both.
 
@@ -43,7 +44,7 @@ Open `chrome://extensions/` → "Details" of this extension → "Extension optio
 | Equal | Read a series at the same width; the scale differs per image (default) | Base width |
 | Scale | Assume a series is drawn at the same resolution and use one scale for all images | Scale that gives the first image the base width × each image's width |
 | Width | Fit to the screen width | Screen width |
-| Height | One image fits the screen vertically | Screen height × aspect ratio (up to the screen width) |
+| Whole | One whole image fits the screen | Screen height × aspect ratio (up to the screen width) |
 | Auto | Tall images fit the width, wide ones fit the screen | Never enlarged beyond the original size |
 | Orig | Image pixels as they are | Image width |
 

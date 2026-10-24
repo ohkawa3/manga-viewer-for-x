@@ -19,6 +19,11 @@ const XMV_CONFIG = Object.freeze({
   t(key) {
     try { return chrome.i18n.getMessage(key) || key; } catch (_) { return key; }
   },
+  // 設定で隠したモードを除いた一覧。全部隠れていても、最低1つは残す
+  visibleModes(hidden) {
+    const v = XMV_CONFIG.MODES.filter((m) => !(hidden || []).includes(m));
+    return v.length ? v : XMV_CONFIG.MODES.slice();
+  },
   clampRatio(r) {
     const { min, max } = XMV_CONFIG.RATIO;
     return Math.round(Math.min(max, Math.max(min, r)) * 100) / 100;

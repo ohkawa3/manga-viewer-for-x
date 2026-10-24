@@ -15,7 +15,7 @@
     "message": "横幅"
   },
   "mode_height": {
-    "message": "高さ"
+    "message": "全体"
   },
   "mode_best": {
     "message": "自動"
@@ -33,7 +33,7 @@
     "message": "横幅に合わせる"
   },
   "tip_height": {
-    "message": "高さに合わせる"
+    "message": "全体：1枚が画面に全部収まるように表示"
   },
   "tip_best": {
     "message": "自動：縦長は幅に合わせ、横長は画面に収める。原寸以上には拡大しない"
@@ -82,6 +82,12 @@
   },
   "opt_start_last": {
     "message": "前回選んだモード"
+  },
+  "opt_modes_title": {
+    "message": "表示するモード"
+  },
+  "opt_modes_desc": {
+    "message": "ツールバーと数字キー（1〜6）で使うモード。使わないものはチェックを外すと見えなくなります（最低1つは残ります）。"
   },
   "opt_ratio_title": {
     "message": "基準幅（同幅・同倍モード）"

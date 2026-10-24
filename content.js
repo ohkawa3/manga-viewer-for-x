@@ -30,16 +30,27 @@
   // lastMode:    最後にビューアで選んだ表示モード（ビューアで切り替えるたびに保存）
   // startMode:   設定画面の「起動時の表示モード」。'last'（前回のモード）か、モード名で固定
   // baseRatio:   設定画面の「基準幅」
-  const prefs = { lastMode: DEFAULT_MODE, startMode: START_LAST, baseRatio: RATIO.def, hint: false };
-  const PREF_KEYS = ['mode', 'startMode', 'baseRatio', 'hint'];
+  // hiddenModes: 設定画面で「表示するモード」から外したモード（ツールバーと数字キーから除く）
+  const prefs = { lastMode: DEFAULT_MODE, startMode: START_LAST, baseRatio: RATIO.def, hint: false, hiddenModes: [] };
+  const PREF_KEYS = ['mode', 'startMode', 'baseRatio', 'hint', 'hiddenModes'];
+  let onModesChanged = null; // 開いているビューアのボタン表示を更新する
   // storage の値を検証して prefs に反映する（不正な値は無視。設定画面で変えた分も同じ関数で受ける）
   function applyPrefs(r) {
     if (MODES.includes(r.mode)) prefs.lastMode = r.mode;
     if (r.startMode === START_LAST || MODES.includes(r.startMode)) prefs.startMode = r.startMode;
     if (typeof r.baseRatio === 'number' && isFinite(r.baseRatio)) prefs.baseRatio = XMV_CONFIG.clampRatio(r.baseRatio);
     if (r.hint === true) prefs.hint = true;
+    if (Array.isArray(r.hiddenModes)) {
+      prefs.hiddenModes = r.hiddenModes.filter((m) => MODES.includes(m));
+      if (onModesChanged) onModesChanged();
+    }
   }
-  const startMode = () => (prefs.startMode === START_LAST ? prefs.lastMode : prefs.startMode);
+  const isShown = (m) => XMV_CONFIG.visibleModes(prefs.hiddenModes).includes(m);
+  // 起動時のモード。隠したモードだったときは、表示中の先頭のモードにする
+  const startMode = () => {
+    const m = prefs.startMode === START_LAST ? prefs.lastMode : prefs.startMode;
+    return isShown(m) ? m : XMV_CONFIG.visibleModes(prefs.hiddenModes)[0];
+  };
   try {
     chrome.storage.local.get(PREF_KEYS, (r) => {
       if (chrome.runtime.lastError || !r) return;
@@ -332,7 +343,7 @@
 .failed .img { display: none; }
 .bar {
   position: absolute; top: 10px; right: 24px; display: flex; flex-direction: column;
-  align-items: flex-end; gap: 4px; padding: 5px 6px; background: rgba(24,26,30,.9); border: 1px solid rgba(255,255,255,.12);
+  align-items: flex-start; gap: 4px; padding: 5px 6px; /* パネルは右端にあるので、ボタンは左に寄せてマウスの移動を短くする */ background: rgba(24,26,30,.9); border: 1px solid rgba(255,255,255,.12);
   border-radius: 10px; opacity: 0; transition: opacity .15s .3s; user-select: none;
 }
 .bar:hover, .bar:focus-within { opacity: 1; transition-delay: 0s; } /* 普段は透明。マウスを乗せたときだけ表示（消えるときは少し遅らせる） */
@@ -346,7 +357,6 @@
 .bar button:hover { background: rgba(255,255,255,.2); }
 .bar button.on { background: #1d9bf0; color: #fff; }
 .zoom { min-width: 52px; }
-.sep { width: 1px; height: 16px; margin: 0 3px; background: rgba(255,255,255,.18); }
 .link {
   color: #8ecdf8; text-decoration: none; max-width: 160px; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
@@ -368,13 +378,13 @@
    <div class="row">
     <a class="link" target="_blank" rel="noopener noreferrer"></a>
     <span class="count"></span>
-    <span class="sep"></span>
+    <button data-act="reload" title="${t('tip_reload')}">↻</button>
+    <button data-act="close" title="${t('tip_close')}">✕</button>
+   </div>
+   <div class="row zooms">
     <button data-act="zout" title="${t('tip_zoomOut')}">−</button>
     <button data-act="zreset" class="zoom" title="${t('tip_zoomReset')}">100%</button>
     <button data-act="zin" title="${t('tip_zoomIn')}">＋</button>
-    <span class="sep"></span>
-    <button data-act="reload" title="${t('tip_reload')}">↻</button>
-    <button data-act="close" title="${t('tip_close')}">✕</button>
    </div>
    <div class="row modes">
 ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip_' + m)}">${t('mode_' + m)}</button>`).join('\n')}
@@ -570,6 +580,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
       zoomBtn.textContent = Math.round(zoom * 100) + '%';
       bar.querySelectorAll('[data-act="mode"]').forEach((b) => {
         b.classList.toggle('on', b.dataset.mode === mode);
+        b.style.display = isShown(b.dataset.mode) || b.dataset.mode === mode ? '' : 'none'; // 使用中のモードは隠さない
       });
       if (!list.length) {
         countEl.textContent = '…';
@@ -593,7 +604,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
 
     // ---- 操作 --------------------------------------------------------
     function setMode(m) {
-      if (!MODES.includes(m)) return;
+      if (!MODES.includes(m) || !isShown(m)) return;
       mode = m;
       zoom = 1;
       prefs.lastMode = m;
@@ -763,7 +774,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
       if (k === 'Escape' || k === 'q') close();
       else if (k === 'ArrowRight' || k === 'j' || k === 'n') goNext();
       else if (k === 'ArrowLeft' || k === 'k' || k === 'p') goPrev();
-      else if (k >= '1' && k <= '6') setMode(MODES[+k - 1]); // ボタンの並び順に対応
+      else if (k >= '1' && k <= '6') setMode(MODES[+k - 1]); // ボタンの並び順に対応（隠したモードは無視）
       else if (k === '+' || k === '=') zoomCenter(1.15);
       else if (k === '-') zoomCenter(1 / 1.15);
       else if (k === '0') resetZoom();
@@ -781,6 +792,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
     }
 
     const onResize = () => withAnchor(layoutAll);
+    onModesChanged = updateInfo;
     window.addEventListener('keydown', onKey, true);
     window.addEventListener('resize', onResize);
     document.addEventListener('focusin', onFocusIn, true);
@@ -814,6 +826,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
       clearInterval(urlWatch);
       clearTimeout(toastTimer);
       if (infoRaf) cancelAnimationFrame(infoRaf);
+      onModesChanged = null;
       window.removeEventListener('keydown', onKey, true);
       window.removeEventListener('resize', onResize);
       document.removeEventListener('focusin', onFocusIn, true);

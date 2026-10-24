@@ -22,7 +22,7 @@ X（旧Twitter）に投稿された漫画を、ページをめくるように縦
 ・中クリック / Ctrl(⌘)+クリックで、新しいタブにビューアを開く
 
 ■ 表示モード（キー 1〜6 でも切り替え）
-同幅 / 同倍 / 横幅 / 高さ / 自動 / 原寸
+同幅 / 同倍 / 横幅 / 全体 / 自動 / 原寸
 ・同幅：すべての画像を同じ幅にそろえて読む
 ・同倍：同じ解像度で描かれた連続投稿を、同じ倍率で表示（画像の大きさの違いがそのまま出る）
 
@@ -30,7 +30,7 @@ X（旧Twitter）に投稿された漫画を、ページをめくるように縦
 クリックで次の画像、Shift+クリックで前の画像、Ctrl+ホイールで拡大縮小、Escで閉じる。右上のツールバーは普段は透明で、マウスを乗せたときだけ表示されます。
 
 ■ 設定
-拡張機能のオプションで、起動時の表示モードと基準幅を変えられます。
+拡張機能のオプションで、起動時の表示モード、表示するモード（使わないモードは隠せます）、基準幅を変えられます。
 
 ■ プライバシー
 個人情報や利用状況を収集・送信しません。権限は設定の保存（storage）だけです。画像は X が表示しているのと同じ場所から読み込みます。
@@ -52,7 +52,7 @@ FEATURES
 - Middle-click / Ctrl(⌘)+click opens the viewer in a new tab
 
 VIEW MODES (also keys 1–6)
-Equal / Scale / Width / Height / Auto / Orig
+Equal / Scale / Width / Whole / Auto / Orig
 - Equal: scale every image to the same width
 - Scale: apply one scale to a series drawn at the same resolution (size differences are kept)
 
@@ -60,7 +60,7 @@ CONTROLS
 Click: next image. Shift+click: previous. Ctrl+wheel: zoom. Esc: close. The toolbar at the top right is transparent until you hover over it.
 
 SETTINGS
-In the extension options you can choose the view mode used on open and the base width.
+In the extension options you can choose the view mode used on open, which modes to show (hide the ones you do not use), and the base width.
 
 PRIVACY
 It does not collect or transmit any personal or usage data. The only permission is storage (for saving your settings). Images are loaded from the same place X itself loads them from.

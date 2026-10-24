@@ -15,7 +15,7 @@
     "message": "Width"
   },
   "mode_height": {
-    "message": "Height"
+    "message": "Whole"
   },
   "mode_best": {
     "message": "Auto"
@@ -33,7 +33,7 @@
     "message": "Fit to screen width"
   },
   "tip_height": {
-    "message": "Fit to screen height"
+    "message": "Whole: fit one whole image on the screen"
   },
   "tip_best": {
     "message": "Auto: fit width for tall images, fit the screen for wide ones. Never enlarged beyond original size"
@@ -82,6 +82,12 @@
   },
   "opt_start_last": {
     "message": "Last used mode"
+  },
+  "opt_modes_title": {
+    "message": "Modes to show"
+  },
+  "opt_modes_desc": {
+    "message": "Modes available in the toolbar and on the number keys (1–6). Uncheck the ones you do not use to hide them (at least one stays)."
   },
   "opt_ratio_title": {
     "message": "Base width (Equal / Scale modes)"
