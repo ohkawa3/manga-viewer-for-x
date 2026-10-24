@@ -356,7 +356,6 @@
 .bar button[data-act="mode"] { min-width: 44px; padding: 0 6px; }
 .bar button:hover { background: rgba(255,255,255,.2); }
 .bar button.on { background: #1d9bf0; color: #fff; }
-.zoom { min-width: 52px; }
 .link {
   color: #8ecdf8; text-decoration: none; max-width: 160px; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
@@ -383,7 +382,6 @@
    </div>
    <div class="row zooms">
     <button data-act="zout" title="${t('tip_zoomOut')}">−</button>
-    <button data-act="zreset" class="zoom" title="${t('tip_zoomReset')}">100%</button>
     <button data-act="zin" title="${t('tip_zoomIn')}">＋</button>
    </div>
    <div class="row modes">
@@ -424,7 +422,6 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
     const bar = sr.querySelector('.bar');
     const link = sr.querySelector('.link');
     const countEl = sr.querySelector('.count');
-    const zoomBtn = sr.querySelector('.zoom');
     const toastEl = sr.querySelector('.toast');
     const reloadBtn = sr.querySelector('[data-act="reload"]');
     if (!threadMode) reloadBtn.style.display = 'none';
@@ -577,7 +574,6 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
 
     // ---- 情報表示 ----------------------------------------------------
     function updateInfo() {
-      zoomBtn.textContent = Math.round(zoom * 100) + '%';
       bar.querySelectorAll('[data-act="mode"]').forEach((b) => {
         b.classList.toggle('on', b.dataset.mode === mode);
         b.style.display = isShown(b.dataset.mode) || b.dataset.mode === mode ? '' : 'none'; // 使用中のモードは隠さない
@@ -758,7 +754,6 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
         case 'mode': setMode(b.dataset.mode); break;
         case 'zin': zoomCenter(1.2); break;
         case 'zout': zoomCenter(1 / 1.2); break;
-        case 'zreset': resetZoom(); break;
         case 'reload': autoLoad(); break;
         case 'close': close(); return;
         default: break;

@@ -44,9 +44,6 @@
   "tip_zoomOut": {
     "message": "Zoom out (-)"
   },
-  "tip_zoomReset": {
-    "message": "Reset zoom (0)"
-  },
   "tip_zoomIn": {
     "message": "Zoom in (+)"
   },

@@ -44,9 +44,6 @@
   "tip_zoomOut": {
     "message": "縮小 (-)"
   },
-  "tip_zoomReset": {
-    "message": "倍率リセット (0)"
-  },
   "tip_zoomIn": {
     "message": "拡大 (+)"
   },
