@@ -343,7 +343,7 @@
 .failed .img { display: none; }
 .bar {
   position: absolute; top: 10px; right: 24px; display: flex; flex-direction: column;
-  align-items: flex-start; gap: 4px; padding: 5px 6px; /* パネルは右端にあるので、ボタンは左に寄せてマウスの移動を短くする */ background: rgba(24,26,30,.9); border: 1px solid rgba(255,255,255,.12);
+  align-items: stretch; gap: 4px; padding: 5px 6px; /* パネルは右端にあるので、操作ボタンは左に寄せてマウスの移動を短くする */ background: rgba(24,26,30,.9); border: 1px solid rgba(255,255,255,.12);
   border-radius: 10px; opacity: 0; transition: opacity .15s .3s; user-select: none;
 }
 .bar:hover, .bar:focus-within { opacity: 1; transition-delay: 0s; } /* 普段は透明。マウスを乗せたときだけ表示（消えるときは少し遅らせる） */
@@ -352,12 +352,13 @@
   min-width: 28px; height: 26px; padding: 0 8px; border: 0; border-radius: 6px;
   background: rgba(255,255,255,.08); color: inherit; font: inherit; cursor: pointer;
 }
+.spacer { flex: 1; min-width: 14px; } /* 更新・✕を右端に離す（押し間違い防止） */
 .row.modes { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; } /* 言語が変わっても全ボタンを同じ幅に */
 .bar button[data-act="mode"] { min-width: 44px; padding: 0 6px; }
 .bar button:hover { background: rgba(255,255,255,.2); }
 .bar button.on { background: #1d9bf0; color: #fff; }
 .link {
-  color: #8ecdf8; text-decoration: none; max-width: 160px; overflow: hidden;
+  color: #8ecdf8; text-decoration: none; max-width: 120px; overflow: hidden;
   text-overflow: ellipsis; white-space: nowrap;
 }
 .link:hover { text-decoration: underline; }
@@ -377,12 +378,11 @@
    <div class="row">
     <a class="link" target="_blank" rel="noopener noreferrer"></a>
     <span class="count"></span>
-    <button data-act="reload" title="${t('tip_reload')}">↻</button>
-    <button data-act="close" title="${t('tip_close')}">✕</button>
-   </div>
-   <div class="row zooms">
     <button data-act="zout" title="${t('tip_zoomOut')}">−</button>
     <button data-act="zin" title="${t('tip_zoomIn')}">＋</button>
+    <span class="spacer"></span>
+    <button data-act="reload" title="${t('tip_reload')}">↻</button>
+    <button data-act="close" title="${t('tip_close')}">✕</button>
    </div>
    <div class="row modes">
 ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip_' + m)}">${t('mode_' + m)}</button>`).join('\n')}
