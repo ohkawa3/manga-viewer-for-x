@@ -11,6 +11,7 @@ const XMV_CONFIG = Object.freeze({
   //   best  : 自動   縦長は幅、横長は画面に収める（原寸以上には拡大しない）
   //   orig  : 原寸   画像の画素のまま
   MODES: ['equal', 'scale', 'width', 'height', 'best', 'orig'],
+  MAX_PHOTOS: 100, // 1ツイートの画像枚数の上限（photo/1〜photo/N として受け付ける）
   DEFAULT_MODE: 'equal', // 初めて使うときの表示モード
   START_LAST: 'last', // 起動時の表示モードの設定値：「前回選んだモードで始める」
   // 同幅・同倍の基準幅（画面幅に対する割合）。ズームはこれにさらに掛かる

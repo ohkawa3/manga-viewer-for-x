@@ -6,8 +6,15 @@
   // ------------------------------------------------------------------
   // 定数
   // ------------------------------------------------------------------
-  // /<handle>/status/<id>/photo/<1-4> だけを厳密に受け付ける（/i/ は予約パスなので除外）
-  const PHOTO_RE = /^\/(?!i\/)([A-Za-z0-9_]{1,50})\/status\/(\d{1,25})\/photo\/([1-4])\/?$/;
+  // /<handle>/status/<id>/photo/<1-MAX_PHOTOS> だけを厳密に受け付ける（/i/ は予約パスなので除外）
+  const MAX_PHOTOS = XMV_CONFIG.MAX_PHOTOS;
+  const PHOTO_RE = {
+    re: /^\/(?!i\/)([A-Za-z0-9_]{1,50})\/status\/(\d{1,25})\/photo\/([1-9]\d{0,2})\/?$/,
+    exec(path) {
+      const m = this.re.exec(path);
+      return m && +m[3] <= MAX_PHOTOS ? m : null;
+    },
+  };
   const STATUS_RE = /^\/[A-Za-z0-9_]{1,50}\/status\/(\d{1,25})(?:\/|$)/;
   const MEDIA_PATH_RE = /^\/media\/[A-Za-z0-9_-]{1,100}$/;
   const FORMATS = new Set(['jpg', 'png', 'webp']);
@@ -973,7 +980,7 @@ ${MODES.map((m) => `    <button data-act="mode" data-mode="${m}" title="${t('tip
   // ------------------------------------------------------------------
   async function openWhenReady(r) {
     const n = r.n;
-    if (typeof r.id !== 'string' || !/^\d{1,25}$/.test(r.id) || !Number.isInteger(n) || n < 1 || n > 4) return;
+    if (typeof r.id !== 'string' || !/^\d{1,25}$/.test(r.id) || !Number.isInteger(n) || n < 1 || n > MAX_PHOTOS) return;
     pendingOpen = true;
     try {
       if (document.visibilityState !== 'visible') {

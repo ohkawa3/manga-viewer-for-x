@@ -7,6 +7,8 @@
 // （ブラウザ終了で消えるメモリ上の領域）にタブIDごとに置き、一度読んだら消す。
 // ------------------------------------------------------------------
 
+importScripts('config.js'); // MAX_PHOTOS を共有
+const { MAX_PHOTOS } = XMV_CONFIG;
 const HANDLE_RE = /^(?!i$)[A-Za-z0-9_]{1,50}$/;
 const ID_RE = /^\d{1,25}$/;
 const TTL_MS = 120000; // 2分以内に受け取られなかった目印は無効
@@ -31,7 +33,7 @@ async function openTab(msg, src) {
   const { handle, id, n } = msg;
   if (typeof handle !== 'string' || !HANDLE_RE.test(handle)) return;
   if (typeof id !== 'string' || !ID_RE.test(id)) return;
-  if (!Number.isInteger(n) || n < 1 || n > 4) return;
+  if (!Number.isInteger(n) || n < 1 || n > MAX_PHOTOS) return;
 
   // Chrome標準の中クリックと同じく、同じ元タブから開いたタブの後ろに並べる
   let index = src.index + 1;
